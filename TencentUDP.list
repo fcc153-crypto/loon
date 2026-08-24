@@ -1,0 +1,43 @@
+# Honor of Kings (王者荣耀) Loon Rule Set
+# 仅保留与王者荣耀/腾讯游戏对局强相关的域名与已确认游戏节点 IP 段
+
+# ---- 域名兜底（主域及子域）----
+DOMAIN-SUFFIX,pvp.qq.com,no-resolve
+DOMAIN-SUFFIX,qq.com,no-resolve
+DOMAIN-SUFFIX,mdt.qq.com,no-resolve
+DOMAIN-SUFFIX,gcloudcs.com,no-resolve
+DOMAIN-SUFFIX,gcloudsdk.com,no-resolve
+
+# ---- 域名精确匹配 ----
+DOMAIN,game.weixin.qq.com,no-resolve
+DOMAIN,game.qq.com,no-resolve
+DOMAIN,pvp.ingame.qq.com,no-resolve
+DOMAIN,superr.game.qq.com,no-resolve
+DOMAIN,tools.tmga.qq.com,no-resolve
+DOMAIN,qosidc.gcloudsdk.com,no-resolve
+DOMAIN,cn.voice.gcloudcs.com,no-resolve
+DOMAIN,speed.ino.qq.com,no-resolve
+DOMAIN,estv-op.tga.qq.com,no-resolve
+DOMAIN,ios.crashsight.qq.com,no-resolve
+DOMAIN,control.mna.qq.com,no-resolve
+DOMAIN,game.eve.mdt.qq.com,no-resolve
+DOMAIN,oth.eve.mdt.qq.com,no-resolve
+DOMAIN,oth.str.mdt.qq.com,no-resolve
+
+# ---- IP 段精确匹配（/32 + no-resolve）----
+IP-CIDR,117.89.181.34/32,no-resolve
+IP-CIDR,61.160.255.68/32,no-resolve
+IP-CIDR,101.91.33.57/32,no-resolve
+IP-CIDR,123.151.48.11/32,no-resolve
+IP-CIDR,113.250.24.152/32,no-resolve
+IP-CIDR,183.47.104.169/32,no-resolve
+IP-CIDR,36.156.106.126/32,no-resolve
+IP-CIDR,106.55.184.199/32,no-resolve
+IP-CIDR,120.241.127.169/32,no-resolve
+IP-CIDR,183.192.196.239/32,no-resolve
+IP-CIDR,36.150.223.140/32,no-resolve
+IP-CIDR,183.232.84.182/32,no-resolve
+IP-CIDR,120.232.131.207/32,no-resolve
+IP-CIDR,106.55.90.74/32,no-resolve
+IP-CIDR,183.232.131.179/32,no-resolve
+IP-CIDR,120.241.127.168/32,no-resolve
