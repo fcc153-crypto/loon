@@ -41,3 +41,23 @@ IP-CIDR,120.232.131.207/32,no-resolve
 IP-CIDR,106.55.90.74/32,no-resolve
 IP-CIDR,183.232.131.179/32,no-resolve
 IP-CIDR,120.241.127.168/32,no-resolve
+
+# ===== 腾讯云 TRTC / IM 白名单域名（证据：腾讯云官方文档）=====
+# 小程序实时音视频必需合法域名 
+DOMAIN-SUFFIX,tencent-cloud.com,no-resolve
+DOMAIN,official.opensso.tencent-cloud.com,no-resolve
+DOMAIN,yun.tim.qq.com,no-resolve
+DOMAIN,cloud.tencent.com,no-resolve
+DOMAIN,webim.tim.qq.com,no-resolve
+DOMAIN,query.tencent-cloud.com,no-resolve
+# Native SDK 媒体调度域 
+DOMAIN-SUFFIX,rtc.qq.com,no-resolve
+DOMAIN-SUFFIX,rtc.qcloud.com,no-resolve
+DOMAIN,gz.file.myqcloud.com,no-resolve
+DOMAIN,avc.qcloud.com,no-resolve
+DOMAIN,mlvbdc.live.qcloud.com,no-resolve
+DOMAIN,dldir1.qq.com,no-resolve
+# 腾讯云 IM WebIM 业务域名 
+DOMAIN,wss.im.qcloud.com,no-resolve
+DOMAIN,web.sdk.qcloud.com,no-resolve
+DOMAIN,pingtas.qq.com,no-resolve
