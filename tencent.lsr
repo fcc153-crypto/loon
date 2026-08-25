@@ -3,7 +3,21 @@
 # 策略已移除，使用时自行在 Loon 配置中追加
 
 [Rule]
-
+# WeChat Additional Domains (from screenshots)
+DOMAIN-SUFFIX,gtimg.com
+DOMAIN-SUFFIX,qqcdn.net
+DOMAIN-SUFFIX,tc.qq.com
+DOMAIN-SUFFIX,teg.tencent-cloud.net
+DOMAIN-SUFFIX,x-17v5cdn.net
+DOMAIN-SUFFIX,xy-asia.com
+DOMAIN-SUFFIX,qlogo.cn
+DOMAIN-SUFFIX,tga.qq.com
+DOMAIN-SUFFIX,map.qq.com
+DOMAIN-SUFFIX,3g.qq.com
+DOMAIN-SUFFIX,qq.com
+DOMAIN-SUFFIX,tencent-cloud.com
+DOMAIN-SUFFIX,voice.gcloudcs.com
+DOMAIN-SUFFIX,gcloudsdk.com
 # ==================== 微信小程序 ====================
 DOMAIN-SUFFIX,qq.com
 DOMAIN-SUFFIX,wechat.com
