@@ -1,16 +1,49 @@
 #!name=网页地图跳转高德
-#!desc=将网页中的 Apple Maps / Google Maps 链接重定向到高德地图
+#!desc=将网页中的 Apple Maps / Google Maps 链接以及 Siri 导航重定向到高德地图
 #!author=your_name
 #!homepage=https://github.com/your_name/loon-apple-maps-to-amap
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amap.png
 
 [MITM]
-hostname = %APPEND% maps.apple.com, maps.google.com, www.google.com, goo.gl, maps.apple.com.qjzd.net
+hostname = %APPEND% maps.apple.com, maps.google.com, www.google.com, goo.gl, maps.app.goo.gl, g.co, maps.apple.com.qjzd.net
 
 [URL Rewrite]
-^https?:\/\/maps\.apple\.com\/\?q=([^&]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
-^https?:\/\/maps\.apple\.com\/\?ll=([-0-9.]+),([-0-9.]+)&q=([^&]+) iosamap://viewMap?sourceApplication=loon&lat=$1&lon=$2&poiname=$3&dev=0 302
-^https?:\/\/maps\.apple\.com\/\?address=([^&]+) iosamap://viewMap?sourceApplication=loon&dname=$1&dev=0 302
-^https?:\/\/maps\.google\.com\/\?q=([^&]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
-^https?:\/\/www\.google\.com\/maps\/place\/([^/]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
-^https?:\/\/goo\.gl\/maps\/([A-Za-z0-9]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
+# ========== Apple Maps ==========
+# 1. 纯搜索 / 地名
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?q=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# 2. 经纬度 + 名称
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?ll=([-0-9.]+),([-0-9.]+)(?:&.*)?(?:&q=([^&]+))? iosamap://viewMap?sourceApplication=Loon&lat=$1&lon=$2&poiname=$3&dev=0 302
+
+# 3. address 参数
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?address=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# 4. 导航到目的地（最重要！支持 Siri / 网页导航）
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?daddr=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# 5. 同时有起点和终点
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?saddr=([^&]+)&(?:.*&)?daddr=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&sname=$1&dname=$2&dev=0&t=0 302
+
+# 6. 经纬度作为目的地导航
+^https?:\/\/maps\.apple\.com\/\?(?:.*&)?daddr=([-0-9.]+),([-0-9.]+)(?:&.*)?$ iosamap://navi?sourceApplication=Loon&lat=$1&lon=$2&dev=0&style=2 302
+
+# 7. 兜底：直接打开高德
 ^https?:\/\/maps\.apple\.com\/ iosamap:// 302
+
+# ========== Google Maps ==========
+# 搜索 / 地名
+^https?:\/\/(?:maps\.)?google\.com\/maps\?(?:.*&)?q=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# place 路径
+^https?:\/\/(?:www\.)?google\.com\/maps\/place\/([^/]+) iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# 经纬度中心
+^https?:\/\/(?:maps\.)?google\.com\/maps\?(?:.*&)?(?:ll|center)=([-0-9.]+),([-0-9.]+)(?:&.*)?$ iosamap://viewMap?sourceApplication=Loon&lat=$1&lon=$2&dev=0 302
+
+# 导航方向
+^https?:\/\/(?:maps\.)?google\.com\/maps\?(?:.*&)?daddr=([^&]+)(?:&.*)?$ iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+
+# 短链
+^https?:\/\/goo\.gl\/maps\/([A-Za-z0-9]+) iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+^https?:\/\/maps\.app\.goo\.gl\/([A-Za-z0-9]+) iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
+^https?:\/\/g\.co\/maps\/([A-Za-z0-9]+) iosamap://path?sourceApplication=Loon&dname=$1&dev=0&t=0 302
