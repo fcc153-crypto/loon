@@ -1,0 +1,16 @@
+#!name=网页地图跳转高德
+#!desc=将网页中的 Apple Maps / Google Maps 链接重定向到高德地图
+#!author=your_name
+#!homepage=https://github.com/your_name/loon-apple-maps-to-amap
+
+[MITM]
+hostname = %APPEND% maps.apple.com, maps.google.com, www.google.com, goo.gl, maps.apple.com.qjzd.net
+
+[URL Rewrite]
+^https?:\/\/maps\.apple\.com\/\?q=([^&]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
+^https?:\/\/maps\.apple\.com\/\?ll=([-0-9.]+),([-0-9.]+)&q=([^&]+) iosamap://viewMap?sourceApplication=loon&lat=$1&lon=$2&poiname=$3&dev=0 302
+^https?:\/\/maps\.apple\.com\/\?address=([^&]+) iosamap://viewMap?sourceApplication=loon&dname=$1&dev=0 302
+^https?:\/\/maps\.google\.com\/\?q=([^&]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
+^https?:\/\/www\.google\.com\/maps\/place\/([^/]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
+^https?:\/\/goo\.gl\/maps\/([A-Za-z0-9]+) iosamap://path?sourceApplication=loon&dname=$1&dev=0&t=0 302
+^https?:\/\/maps\.apple\.com\/ iosamap:// 302
